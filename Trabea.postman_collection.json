@@ -1,0 +1,618 @@
+{
+	"info": {
+		"_postman_id": "a3fc1dbf-3ff8-45e7-a36d-0519a1a090b6",
+		"name": "Trabea",
+		"description": "> Prototyping your API in Postman streamlines the development process by enabling you to design and test front- and back-end API-driven functionalities within a shared workspace. \n  \n\n## **🪐 Get started**\n\nThis collection serves as a place for teams from the Intergalactic Bank to collaborate on the design of the soon-to-be-developed Intergalactic Bank API. This prototype collection outlines how the service's requests and responses should function. Stakeholders should provide their thoughts and suggestions before we begin development.\n\n## **🧑‍💻 Setting up a mock server**\n\n<img src=\"https://lh7-us.googleusercontent.com/eNxPYjGNGALmKSzZvdhlMuy_XK3C_iQ3rK7tCDiPvr6nePMyggp9NTIAjcZYs7oIy8PU_NCGFKtcBPRZrfplfPyrKsO5SCMRX6OuBpzsL_HuOHxW2DwA3FH2-o0uFJgAZOr7JaQTiIvkayUSrPdsxQQ\">\n\nThis collection is meant to be used alongside a [<b>Postman Mock Server</b>](https://learning.postman.com/docs/designing-and-developing-your-api/mocking-data/setting-up-mock/)**.** Since we are still in the planning phase of the API, we have included several example responses for each request, laying out how we think each possible response will look. Including these example responses also has the added benefit of powering a mock server. By following the instructions, you can set up your own mock server and simulate the behavior of this API by returning the predefined data.\n\n**To set up a mock server:**\n\n1. Select **Mock collection** from the collection's actions menu.\n2. On the **Create a mock server** page, add a name for your mock server, and select to **Save the mock server URL as a new environment variable.** This will create a new environment with the mock’s URL pre-populated.\n3. Select the **New Environment** from the **Environment** dropdown list.\n4. Complete the process by clicking **Create Mock Server**.\n5. Send the request! You should now see that the `{{url}}` variable is using the mock server you set up previously.\n6. Try editing fields in the mocked responses to see your changes reflected in the mock server.\n    \n\n## **🤔Why include tests?**\n\nEach request in the collection includes tests to check the response structure. These tests check that all of the properties that other systems rely on are present and of the expected data type. Once you have the fully built-out service in place, you can swap the mock server URL for the live URL and test that your implementation follows the same guidelines as your prototype. This gives you confidence that you can start integrating this service into your systems.\n\nIf you are adding a new proposed endpoint for this request, try asking Postbot to generate tests for it.\n\n## **🤝Collaborate with us!**\n\nThe Bank Services team wants your team’s input on our API design. Add an [inline comment](https://learning.postman.com/docs/collaborating-in-postman/working-with-your-team/discussing-your-work/) to this collection with your ideas, questions, and suggestions, or reach out to us on our internal Slack by tagging `@bank-services`.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38854241",
+		"_collection_link": "https://team-hore-0737.postman.co/workspace/Project-Trabea~e42f2262-53cb-4be1-bb74-c8eb73185cac/collection/38854241-a3fc1dbf-3ff8-45e7-a36d-0519a1a090b6?action=share&source=collection_link&creator=38854241"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"workEmail\": \"alan.conway@trabea.co.id\",\r\n    \"password\": \"Trabea123\",\r\n    \"role\": \"PARTTIMER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "A transaction records money moving in or out of an account. Transactions at the Intergalactic Bank should follow a blockchain-like approach. Once created, they cannot be updated or deleted, so we will have only endpoints to get or create transactions."
+		},
+		{
+			"name": "PARTTIMER",
+			"item": [
+				{
+					"name": "Submit Work Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGRpLmRhbmlzQHRyYWJlYS5jby5pZCIsImlzcyI6IlByb2plY3QgTGliZXIiLCJpYXQiOjE3NjQyMDcwNTUsImV4cCI6MTc2NDI5MzQ1NSwicm9sZSI6IlJPTEVfQURNSU5JU1RSQVRPUiIsInVzZXJuYW1lIjoiYWxkaS5kYW5pc0B0cmFiZWEuY28uaWQifQ.jRhTjqyoJdcmkKq2BHeJHFHXM--i8tyIlhiaMKPyzTI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"workDate\": \"2025-12-02\",\r\n    \"shiftId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/employees/part-timers/work-schedules",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								"part-timers",
+								"work-schedules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Work Schedules",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGFuLmNvbndheUB0cmFiZWEuY28uaWQiLCJpc3MiOiJQcm9qZWN0IExpYmVyIiwiaWF0IjoxNzY0MjE0OTQ4LCJleHAiOjE3NjQzMDEzNDgsInJvbGUiOiJST0xFX1BBUlRUSU1FUiIsInVzZXJuYW1lIjoiYWxhbi5jb253YXlAdHJhYmVhLmNvLmlkIn0.OWoXTzsZU38SStsIQJ8mmDj14K9l_v13bimMMwWrt6k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/employees/part-timers/work-schedules",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								"part-timers",
+								"work-schedules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Work Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGFuLmNvbndheUB0cmFiZWEuY28uaWQiLCJpc3MiOiJQcm9qZWN0IExpYmVyIiwiaWF0IjoxNzY0MjA5NjkzLCJleHAiOjE3NjQyOTYwOTMsInJvbGUiOiJST0xFX1BBUlRUSU1FUiIsInVzZXJuYW1lIjoiYWxhbi5jb253YXlAdHJhYmVhLmNvLmlkIn0.kkwqjnpxjxLt1No7s_ku-CC7EvD37EBvRKk91iKYLLA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/employees/part-timers/work-schedules/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								"part-timers",
+								"work-schedules",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "An Account at the Intergalactic Bank allows you to store funds. Account endpoints return information about accounts and account holders at the Intergalactic Bank. They should not return information about transactions. Instead, all transaction information should be accessed by requests in the `Transactions` folder."
+		},
+		{
+			"name": "MANAGER",
+			"item": [
+				{
+					"name": "Work Schedules",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGRpLmRhbmlzQHRyYWJlYS5jby5pZCIsImlzcyI6IlByb2plY3QgTGliZXIiLCJpYXQiOjE3NjQyMDY4NDYsImV4cCI6MTc2NDI5MzI0Niwicm9sZSI6IlJPTEVfTUFOQUdFUiIsInVzZXJuYW1lIjoiYWxkaS5kYW5pc0B0cmFiZWEuY28uaWQifQ.SeUzuhdx_8-PijLyXuhbA-XcC6YFsbGmMnaYw5n8_kk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/managers/work-schedules",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								"managers",
+								"work-schedules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Work Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGRpLmRhbmlzQHRyYWJlYS5jby5pZCIsImlzcyI6IlByb2plY3QgTGliZXIiLCJpYXQiOjE3NjQyMDY4NDYsImV4cCI6MTc2NDI5MzI0Niwicm9sZSI6IlJPTEVfTUFOQUdFUiIsInVzZXJuYW1lIjoiYWxkaS5kYW5pc0B0cmFiZWEuY28uaWQifQ.SeUzuhdx_8-PijLyXuhbA-XcC6YFsbGmMnaYw5n8_kk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/managers/work-schedules/30",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								"managers",
+								"work-schedules",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Review Work Schedules",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGRpLmRhbmlzQHRyYWJlYS5jby5pZCIsImlzcyI6IlByb2plY3QgTGliZXIiLCJpYXQiOjE3NjQyMDY5MzUsImV4cCI6MTc2NDI5MzMzNSwicm9sZSI6IlJPTEVfQURNSU5JU1RSQVRPUiIsInVzZXJuYW1lIjoiYWxkaS5kYW5pc0B0cmFiZWEuY28uaWQifQ.nTwq0AoMTf76D8112lpcNUVnGKHnLvTjOYDLVnydeog",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/managers/work-schedules/review",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								"managers",
+								"work-schedules",
+								"review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve Work Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGRpLmRhbmlzQHRyYWJlYS5jby5pZCIsImlzcyI6IlByb2plY3QgTGliZXIiLCJpYXQiOjE3NjQyMDY4NDYsImV4cCI6MTc2NDI5MzI0Niwicm9sZSI6IlJPTEVfTUFOQUdFUiIsInVzZXJuYW1lIjoiYWxkaS5kYW5pc0B0cmFiZWEuY28uaWQifQ.SeUzuhdx_8-PijLyXuhbA-XcC6YFsbGmMnaYw5n8_kk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/managers/work-schedules/27/approve",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								"managers",
+								"work-schedules",
+								"27",
+								"approve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disapprove Work Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGRpLmRhbmlzQHRyYWJlYS5jby5pZCIsImlzcyI6IlByb2plY3QgTGliZXIiLCJpYXQiOjE3NjQyMDY4NDYsImV4cCI6MTc2NDI5MzI0Niwicm9sZSI6IlJPTEVfTUFOQUdFUiIsInVzZXJuYW1lIjoiYWxkaS5kYW5pc0B0cmFiZWEuY28uaWQifQ.SeUzuhdx_8-PijLyXuhbA-XcC6YFsbGmMnaYw5n8_kk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/managers/work-schedules/27/disapprove",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								"managers",
+								"work-schedules",
+								"27",
+								"disapprove"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Disapprove Work Schedule",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/employees/managers/work-schedules/27/disapprove",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"employees",
+										"managers",
+										"work-schedules",
+										"27",
+										"disapprove"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Nov 2025 03:20:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": \"Conflict Occured\",\n    \"message\": \"Work Schedule With Id 27 Is Already Handled\",\n    \"status\": \"409 CONFLICT\",\n    \"timestamp\": \"2025-11-27T03:20:19.5814599Z\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ADMINISTRATOR",
+			"item": [
+				{
+					"name": "PT Employees",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGRpLmRhbmlzQHRyYWJlYS5jby5pZCIsImlzcyI6IlByb2plY3QgTGliZXIiLCJpYXQiOjE3NjQxOTkwMjYsImV4cCI6MTc2NDI4NTQyNiwicm9sZSI6IlJPTEVfTUFOQUdFUiIsInVzZXJuYW1lIjoiYWxkaS5kYW5pc0B0cmFiZWEuY28uaWQifQ.Wbmg5_ZcUwpIKLoi9E0bpIEp-7yn8YjY0U3k1z6Og_U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/employees/administrators/part-timers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								"administrators",
+								"part-timers"
+							],
+							"query": [
+								{
+									"key": "fullName",
+									"value": "Alan Conway",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PT Employee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGRpLmRhbmlzQHRyYWJlYS5jby5pZCIsImlzcyI6IlByb2plY3QgTGliZXIiLCJpYXQiOjE3NjQyMDcwNTUsImV4cCI6MTc2NDI5MzQ1NSwicm9sZSI6IlJPTEVfQURNSU5JU1RSQVRPUiIsInVzZXJuYW1lIjoiYWxkaS5kYW5pc0B0cmFiZWEuY28uaWQifQ.jRhTjqyoJdcmkKq2BHeJHFHXM--i8tyIlhiaMKPyzTI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/employees/administrators/part-timers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								"administrators",
+								"part-timers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGRpLmRhbmlzQHRyYWJlYS5jby5pZCIsImlzcyI6IlByb2plY3QgTGliZXIiLCJpYXQiOjE3NjQyMDcwNTUsImV4cCI6MTc2NDI5MzQ1NSwicm9sZSI6IlJPTEVfQURNSU5JU1RSQVRPUiIsInVzZXJuYW1lIjoiYWxkaS5kYW5pc0B0cmFiZWEuY28uaWQifQ.jRhTjqyoJdcmkKq2BHeJHFHXM--i8tyIlhiaMKPyzTI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"last\",\r\n    \"personalEmail\": \"test@gmail.com\",\r\n    \"personalPhoneNumber\": \"08123456789\",\r\n    \"lastEducation\": \"BCH\",\r\n    \"onGoingEducation\": \"MST\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/employees/administrators/part-timers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								"administrators",
+								"part-timers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PT Employee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGRpLmRhbmlzQHRyYWJlYS5jby5pZCIsImlzcyI6IlByb2plY3QgTGliZXIiLCJpYXQiOjE3NjQyMDcwNTUsImV4cCI6MTc2NDI5MzQ1NSwicm9sZSI6IlJPTEVfQURNSU5JU1RSQVRPUiIsInVzZXJuYW1lIjoiYWxkaS5kYW5pc0B0cmFiZWEuY28uaWQifQ.jRhTjqyoJdcmkKq2BHeJHFHXM--i8tyIlhiaMKPyzTI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"alex\",\r\n    \"lastName\": \"romian\",\r\n    \"personalEmail\": \"alex@gmail.com\",\r\n    \"personalPhoneNumber\": \"0812345678910\",\r\n    \"lastEducation\": \"BCH\",\r\n    \"onGoingEducation\": \"MST\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/employees/administrators/part-timers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								"administrators",
+								"part-timers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": ""
+		}
+	]
+}
