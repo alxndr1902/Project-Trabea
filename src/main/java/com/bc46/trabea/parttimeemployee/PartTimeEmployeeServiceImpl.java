@@ -1,8 +1,6 @@
 package com.bc46.trabea.parttimeemployee;
 
-import com.bc46.trabea.employee.Employee;
 import com.bc46.trabea.error.exception.BadRequestException;
-import com.bc46.trabea.error.exception.UnauthorizedException;
 import com.bc46.trabea.parttimeemployee.dto.*;
 import com.bc46.trabea.error.exception.ConflictException;
 import com.bc46.trabea.error.exception.ResourceNotFoundException;
@@ -16,8 +14,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

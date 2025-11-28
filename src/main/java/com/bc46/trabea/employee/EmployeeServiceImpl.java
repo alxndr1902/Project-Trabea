@@ -2,15 +2,11 @@ package com.bc46.trabea.employee;
 
 import com.bc46.trabea.error.exception.ConflictException;
 import com.bc46.trabea.error.exception.ResourceNotFoundException;
-import com.bc46.trabea.error.exception.UnauthorizedException;
 import com.bc46.trabea.user.User;
-import com.bc46.trabea.user.UserRepository;
 import com.bc46.trabea.user.UserService;
 import com.bc46.trabea.workschedule.WorkSchedule;
 import com.bc46.trabea.workschedule.WorkScheduleRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
