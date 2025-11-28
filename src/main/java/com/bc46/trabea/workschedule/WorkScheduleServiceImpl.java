@@ -10,6 +10,7 @@ import com.bc46.trabea.workschedule.dto.WorkScheduleReviewResponse;
 import com.bc46.trabea.workshift.WorkShift;
 import com.bc46.trabea.workshift.WorkShiftRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -46,10 +47,8 @@ public class WorkScheduleServiceImpl implements WorkScheduleService {
 
         LocalDate validatedWorkDate = validateWorkDate(partTimeEmployeeId, request);
         WorkShift validatedWorkShift = validateWorkShift(partTimeEmployeeId, request);
-        WorkSchedule workSchedule = new WorkSchedule();
-        workSchedule.setPartTimeEmployee(partTimeEmployee);
-        workSchedule.setWorkDate(validatedWorkDate);
-        workSchedule.setWorkShift(validatedWorkShift);
+
+        WorkSchedule workSchedule = createWorkSchedule(partTimeEmployee, validatedWorkDate, validatedWorkShift);
         WorkSchedule savedWorkSchedule = workScheduleRepository.save(workSchedule);
         return workScheduleMapper.toWorkScheduleResponse(savedWorkSchedule);
     }
@@ -91,5 +90,13 @@ public class WorkScheduleServiceImpl implements WorkScheduleService {
         }
 
         return workShift;
+    }
+
+    private WorkSchedule createWorkSchedule(PartTimeEmployee partTimeEmployee, LocalDate validatedWorkDate, WorkShift validatedWorkShift) {
+        WorkSchedule workSchedule = new WorkSchedule();
+        workSchedule.setPartTimeEmployee(partTimeEmployee);
+        workSchedule.setWorkDate(validatedWorkDate);
+        workSchedule.setWorkShift(validatedWorkShift);
+        return workSchedule;
     }
 }
