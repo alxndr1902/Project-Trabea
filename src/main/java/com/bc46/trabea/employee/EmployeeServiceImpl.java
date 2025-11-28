@@ -2,11 +2,14 @@ package com.bc46.trabea.employee;
 
 import com.bc46.trabea.error.exception.ConflictException;
 import com.bc46.trabea.error.exception.ResourceNotFoundException;
+import com.bc46.trabea.error.exception.UnauthorizedException;
 import com.bc46.trabea.user.User;
 import com.bc46.trabea.user.UserRepository;
+import com.bc46.trabea.user.UserService;
 import com.bc46.trabea.workschedule.WorkSchedule;
 import com.bc46.trabea.workschedule.WorkScheduleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final WorkScheduleRepository workScheduleRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Override
     public void approveSchedule(Integer workScheduleId) {
@@ -51,9 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findEmployeeByToken() {
-        User user = userRepository.findById(SecurityContextHolder.getContext().getAuthentication().getName())
-                .orElseThrow(() -> new ResourceNotFoundException("User With Work Email " + SecurityContextHolder.getContext().getAuthentication().getName() + " Is Not Found"));
-
+        User user = userService.findUserByToken();
         return employeeRepository.findByUser(user)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee Not Found"));
     }

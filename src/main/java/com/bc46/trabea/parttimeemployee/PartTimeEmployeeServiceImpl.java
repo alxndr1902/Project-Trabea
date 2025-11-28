@@ -2,6 +2,7 @@ package com.bc46.trabea.parttimeemployee;
 
 import com.bc46.trabea.employee.Employee;
 import com.bc46.trabea.error.exception.BadRequestException;
+import com.bc46.trabea.error.exception.UnauthorizedException;
 import com.bc46.trabea.parttimeemployee.dto.*;
 import com.bc46.trabea.error.exception.ConflictException;
 import com.bc46.trabea.error.exception.ResourceNotFoundException;
@@ -10,10 +11,12 @@ import com.bc46.trabea.role.RoleName;
 import com.bc46.trabea.role.RoleRepository;
 import com.bc46.trabea.user.User;
 import com.bc46.trabea.user.UserRepository;
+import com.bc46.trabea.user.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +31,7 @@ public class PartTimeEmployeeServiceImpl implements PartTimeEmployeeService{
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final PartTimeEmployeeMapper partTimeEmployeeMapper;
+    private final UserService userService;
 
     @Override
     @Transactional
@@ -100,9 +104,7 @@ public class PartTimeEmployeeServiceImpl implements PartTimeEmployeeService{
 
     @Override
     public PartTimeEmployee findPartTimeEmployeeByToken() {
-        User user = userRepository.findById(SecurityContextHolder.getContext().getAuthentication().getName())
-                .orElseThrow(() -> new ResourceNotFoundException("User With Work Email " + SecurityContextHolder.getContext().getAuthentication().getName() + " Is Not Found"));
-
+        User user = userService.findUserByToken();
         return partTimeEmployeeRepository.findByUserAndResignDateIsNull(user)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee Not Found"));
     }
