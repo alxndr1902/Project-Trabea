@@ -22,6 +22,13 @@ public class AuthService {
 
 
     public AuthLoginResponse login(AuthLoginRequest request) {
+        RoleName roleName;
+        try {
+            roleName = RoleName.valueOf(request.getRole().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new BadRequestException("Invalid Role");
+        }
+
         var user = userRepository.findByWorkEmail(request.getWorkEmail())
                 .orElseThrow(() -> new WorkEmailAndPasswordIncorrectException("Work Email or Password is incorrect"));
 
