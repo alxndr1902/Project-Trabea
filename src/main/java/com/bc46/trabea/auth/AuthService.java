@@ -39,7 +39,6 @@ public class AuthService {
         if (!hasRole(user, roleName)) {
             throw new UnauthorizedException("You are not authorized to login with this role!");
         }
-        RoleName role = request.getRole();
 
         return AuthLoginResponse.builder()
                 .token(jwtService.generateToken(user, role))
