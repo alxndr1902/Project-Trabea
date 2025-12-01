@@ -38,10 +38,9 @@ public class AuthConfiguration {
 
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
 
-                        // ADMINISTRATOR mapping
-                        .requestMatchers(HttpMethod.GET, "/employees/administrators/part-timers", "/employee/administrator/part-time/*").hasRole("ADMINISTRATOR")
-                        .requestMatchers(HttpMethod.POST, "/employees/administrators/part-timers").hasRole("ADMINISTRATOR")
-                        .requestMatchers(HttpMethod.PUT,"/employees/administrators/part-timers/*").hasRole("ADMINISTRATOR")
+                        .requestMatchers(HttpMethod.GET, "/part-timers", "/part-timers/*").hasRole("ADMINISTRATOR")
+                        .requestMatchers(HttpMethod.POST, "/part-timers").hasRole("ADMINISTRATOR")
+                        .requestMatchers(HttpMethod.PUT,"/part-timers/*").hasRole("ADMINISTRATOR")
 
                         // PARTTIMER mapping
                         .requestMatchers(HttpMethod.GET, "/employees/part-timers/work-schedules", "/employees/part-timers/work-schedules/*").hasRole("PARTTIMER")
