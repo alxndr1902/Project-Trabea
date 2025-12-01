@@ -7,6 +7,6 @@ import lombok.Data;
 public class AuthLoginRequest {
     private final String workEmail;
     private final String password;
-    private final RoleName role;
+    private final String role;
 }
 
