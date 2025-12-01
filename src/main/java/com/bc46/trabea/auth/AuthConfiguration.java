@@ -46,11 +46,9 @@ public class AuthConfiguration {
                         .requestMatchers(HttpMethod.GET, "/employees/part-timers/work-schedules", "/employees/part-timers/work-schedules/*").hasRole("PARTTIMER")
                         .requestMatchers(HttpMethod.POST,"/employees/part-timers/work-schedules").hasRole("PARTTIMER")
 
-                        // MANAGER mapping
-                        .requestMatchers(HttpMethod.GET, "/employees/managers/work-schedules", "/employees/managers/work-schedules/*").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.GET, "/employees/managers/work-schedules/review").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.PATCH,"/employees/managers/work-schedules/*/approve").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.PATCH,"/employees/managers/work-schedules/*/disapprove").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.GET, "/work-schedules/review").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PATCH,"/work-schedules/*/approve").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PATCH,"/work-schedules/*/disapprove").hasRole("MANAGER")
 
                         .anyRequest().authenticated()
                 )
