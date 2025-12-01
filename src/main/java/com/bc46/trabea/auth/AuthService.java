@@ -41,7 +41,7 @@ public class AuthService {
         }
 
         return AuthLoginResponse.builder()
-                .token(jwtService.generateToken(user, role))
+                .token(jwtService.generateToken(user, roleName))
                 .build();
     }
 
