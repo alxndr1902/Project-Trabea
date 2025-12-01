@@ -2,6 +2,7 @@ package com.bc46.trabea.auth;
 
 import com.bc46.trabea.auth.dto.AuthLoginRequest;
 import com.bc46.trabea.auth.dto.AuthLoginResponse;
+import com.bc46.trabea.error.exception.BadRequestException;
 import com.bc46.trabea.error.exception.UnauthorizedException;
 import com.bc46.trabea.error.exception.WorkEmailAndPasswordIncorrectException;
 import com.bc46.trabea.jwt.JwtService;
