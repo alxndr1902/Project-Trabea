@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("employees/part-timers")
+@RequestMapping("part-timers")
 @RequiredArgsConstructor
 public class PartTimeEmployeeController {
     private final WorkScheduleService workScheduleService;
