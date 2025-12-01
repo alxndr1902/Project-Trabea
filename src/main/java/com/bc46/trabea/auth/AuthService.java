@@ -36,7 +36,7 @@ public class AuthService {
             throw new WorkEmailAndPasswordIncorrectException("Work Email or password is incorrect");
         }
 
-        if (!hasRole(user, request.getRole())) {
+        if (!hasRole(user, roleName)) {
             throw new UnauthorizedException("You are not authorized to login with this role!");
         }
         RoleName role = request.getRole();
